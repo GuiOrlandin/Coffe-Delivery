@@ -6,9 +6,4 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-
-    body, button, input, textarea {
-        font-weight: 400;
-        font-size: 1rem;
-    }
 `;
