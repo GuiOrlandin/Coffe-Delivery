@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const CheckoutContainer = styled.div`
   display: flex;
-  justify-content: center;
-  padding-bottom: 15rem;
-  gap: 2rem;
+  justify-content: space-between;
+  padding: 3.0625rem 10rem 15rem 10rem;
+  /* gap: 2.125rem; */
 
   a {
     text-decoration: none;
@@ -26,7 +26,14 @@ export const CheckoutContainer = styled.div`
   }
 `;
 
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const SelectedCoffeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background: ${(props) => props.theme.colors["--card"]};
   border-radius: 8px;

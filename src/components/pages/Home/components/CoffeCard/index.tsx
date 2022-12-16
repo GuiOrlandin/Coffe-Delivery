@@ -10,9 +10,9 @@ import { AddOrSubtractButton } from "./components/AddOrSubtractButton";
 import { FormatMoney } from "../../../../../utils/formatMoney";
 import { useCart } from "../../../../../hooks/useCarts";
 import { useState } from "react";
-import * as zod from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+// import * as zod from "zod";
+// import { useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
 
 export interface coffee {
   id: number;
@@ -27,38 +27,36 @@ interface coffeeProps {
   coffee: coffee;
 }
 
-const CoffeCardValidationSchema = zod.object({
-  quantity: zod.number().min(1),
-});
+// const CoffeCardValidationSchema = zod.object({
+//   quantity: zod.number().min(1),
+// });
 
-type CoffeCardData = zod.infer<typeof CoffeCardValidationSchema>;
+// type CoffeCardData = zod.infer<typeof CoffeCardValidationSchema>;
 
 export function CoffeCard({ coffee }: coffeeProps) {
   const { AddNewCoffee, cartItems } = useCart();
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const fomattedPrice = FormatMoney(coffee.price);
-
-  const coffeCard = useForm<CoffeCardData>({
-    resolver: zodResolver(CoffeCardValidationSchema),
-    defaultValues: {
-      quantity: 1,
-    },
-  });
 
   function handleIncrease() {
     setQuantity((state) => state + 1);
   }
 
   function handleDecrease() {
-    setQuantity((state) => state - 1);
+    if (quantity >= 1) {
+      setQuantity((quantitystate) => quantitystate - 1);
+    }
   }
 
-  function HandleAddCoffeTocart(coffe: coffee) {
+  function HandleAddCoffeTocart() {
     const coffeeToAdd = {
       ...coffee,
-      quantity: 1,
+      quantity,
     };
-    AddNewCoffee(coffeeToAdd);
+
+    if (quantity > 0) {
+      AddNewCoffee(coffeeToAdd);
+    }
   }
   return (
     <CoffeCardContainer>
@@ -82,7 +80,7 @@ export function CoffeCard({ coffee }: coffeeProps) {
             quantity={quantity}
           />
         </div>
-        <CartButton type="button" /* onClick={HandleAddCoffeTocart} */>
+        <CartButton type="button" onClick={HandleAddCoffeTocart}>
           <ShoppingCartSimple size={20} weight="fill" />
         </CartButton>
       </CardButtons>

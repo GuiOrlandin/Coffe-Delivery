@@ -1,5 +1,10 @@
 import { Minus, Plus } from "phosphor-react";
-import { ButtonContainer, MinusButton, PlusButton } from "./styles";
+import {
+  ButtonContainer,
+  MinusButton,
+  NumberOfCoffe,
+  PlusButton,
+} from "./styles";
 
 interface addOrSubtractButtonProps {
   Increase: () => void;
@@ -17,7 +22,7 @@ export function AddOrSubtractButton({
       <MinusButton onClick={Decrease}>
         <Minus weight="bold" />
       </MinusButton>
-      <input readOnly type={"number"} min={1} value={quantity} />
+      <NumberOfCoffe readOnly type="text" value={quantity} />
       <PlusButton onClick={Increase}>
         <Plus weight="bold" />
       </PlusButton>
