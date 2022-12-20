@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CheckoutContainer = styled.div`
+export const CheckoutContainer = styled.form`
   display: flex;
   justify-content: space-between;
   padding: 3.0625rem 10rem 15rem 10rem;

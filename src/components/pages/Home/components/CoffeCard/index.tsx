@@ -11,9 +11,6 @@ import { AddOrSubtractButton } from "./components/AddOrSubtractButton";
 import { FormatMoney } from "../../../../../utils/formatMoney";
 import { useCart } from "../../../../../hooks/useCarts";
 import { useState } from "react";
-// import * as zod from "zod";
-// import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
 
 export interface coffee {
   id: number;
@@ -27,12 +24,6 @@ export interface coffee {
 interface coffeeProps {
   coffee: coffee;
 }
-
-// const CoffeCardValidationSchema = zod.object({
-//   quantity: zod.number().min(1),
-// });
-
-// type CoffeCardData = zod.infer<typeof CoffeCardValidationSchema>;
 
 export function CoffeCard({ coffee }: coffeeProps) {
   const { AddNewCoffee } = useCart();

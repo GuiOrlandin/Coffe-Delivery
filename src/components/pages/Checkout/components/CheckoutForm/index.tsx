@@ -1,4 +1,3 @@
-import { useForm, SubmitHandler } from "react-hook-form";
 import {
   Bank,
   CreditCard,
@@ -6,11 +5,8 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
-import { useContext } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormContext } from "../../../../../context/FormContext";
+import { useFormContext } from "react-hook-form";
 import { AdressDelivery, PaymentInfo } from "../../styles";
-import * as zod from "zod";
 
 import {
   AddressStreet,
@@ -34,41 +30,11 @@ import {
   DebitCardButton,
 } from "./styles";
 
-const formValuesValidationSchema = zod.object({
-  adress: zod.string().min(1, "Informe a sua Rua"),
-  city: zod.string().min(1, "Informe a sua Cidade"),
-  uf: zod.string().min(1, "Informe o seu Estado"),
-  district: zod.string().min(1, "Informe o seu Bairro"),
-  complement: zod.string().min(1, "Informe o seu Complemento"),
-  cep: zod.number().min(8, "Informe o seu CEP").max(8),
-  number: zod.number().min(1, "Informe o seu Numero").max(6),
-});
-
-type formValuesData = zod.infer<typeof formValuesValidationSchema>;
-
 export function CheckoutForm() {
-  // const { createFormValues } = useContext(FormContext);
-
-  const formValues = useForm<formValuesData>({
-    resolver: zodResolver(formValuesValidationSchema),
-    defaultValues: {
-      adress: "",
-      city: "",
-      uf: "",
-      district: "",
-      complement: "",
-      cep: 0,
-      number: 0,
-    },
-  });
-
-  const { register, handleSubmit } = formValues;
-
-  const onSubmit: SubmitHandler<formValuesData> = (data) => console.log(data);
-
+  const { register } = useFormContext();
   return (
     <CheckoutFormContainer>
-      <OrderFormContainer onSubmit={handleSubmit(onSubmit)}>
+      <OrderFormContainer>
         <AdressDelivery>
           <DeliveryAddressIcon>
             <MapPinLine size={22} />

@@ -31,7 +31,7 @@ export const OrderFormIcon = styled.h2`
   color: ${(props) => props.theme.colors["--purple-dark"]};
 `;
 
-export const OrderFormContainer = styled.form`
+export const OrderFormContainer = styled.div`
   display: grif;
   flex-direction: column;
   background: ${(props) => props.theme.colors["--card"]};

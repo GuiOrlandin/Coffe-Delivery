@@ -1,5 +1,7 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
+import { useContext, useEffect } from "react";
 import DeliveryIlustration from "../../../assets/ilustration-delivery.svg";
+import { FormContext } from "../../../context/FormContext";
 
 import {
   AdressContainer,
@@ -14,6 +16,10 @@ import {
 } from "./style";
 
 export function Success() {
+  const { formValues } = useContext(FormContext);
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues]);
   return (
     <SuccessContainer>
       <div>
