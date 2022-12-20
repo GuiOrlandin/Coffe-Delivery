@@ -10,6 +10,7 @@ interface CartContentType {
   cartItems: CartItem[];
   AddNewCoffee: (coffe: CartItem) => void;
   updateCoffeeQuantity: (coffe: CartItem) => void;
+  RemoveCoffee: (coffe: CartItem) => void;
 }
 
 interface CartContextProviderProps {
@@ -53,9 +54,16 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     SetCartItems(newCart);
   }
 
+  function RemoveCoffee(coffee: CartItem) {
+    const CoffeWithoutDeleteOne = cartItems.filter((cartItem) => {
+      return cartItem !== coffee;
+    });
+    SetCartItems(CoffeWithoutDeleteOne);
+  }
+
   return (
     <CartContext.Provider
-      value={{ cartItems, AddNewCoffee, updateCoffeeQuantity }}
+      value={{ cartItems, AddNewCoffee, updateCoffeeQuantity, RemoveCoffee }}
     >
       {children}
     </CartContext.Provider>

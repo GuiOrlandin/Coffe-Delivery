@@ -35,6 +35,11 @@ export const CoffeSelectedContent = styled.div`
 
 export const CoffeSelectedButtons = styled.div`
   display: flex;
+
+  p {
+    font-size: 0.75rem;
+    font-family: "Roboto", sans-serif;
+  }
   gap: 0.5rem;
   margin-top: 0.5rem;
 `;

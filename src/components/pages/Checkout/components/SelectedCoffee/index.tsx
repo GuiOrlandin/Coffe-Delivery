@@ -25,7 +25,7 @@ export function CoffeSelected({ coffee }: coffeSelectedProps) {
   }
 
   function HandleDecreaseCoffeQuantity() {
-    if (quantityItem > 0) {
+    if (quantityItem > 1) {
       return setQuantityItem(quantityItem - 1);
     }
   }
@@ -55,7 +55,7 @@ export function CoffeSelected({ coffee }: coffeSelectedProps) {
             quantity={quantityItem}
             Decrease={HandleDecreaseCoffeQuantity}
           />
-          <RemoveButton />
+          <RemoveButton coffee={coffee} />
         </CoffeSelectedButtons>
       </CoffeSelectedContent>
       <Price>{`R$ ${formatedPrice} `}</Price>

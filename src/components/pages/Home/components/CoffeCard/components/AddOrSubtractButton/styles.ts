@@ -9,7 +9,6 @@ export const ButtonContainer = styled.div`
 
 export const ButtonBase = styled.button`
   display: flex;
-  padding: 0.75rem 0.5rem;
   align-items: center;
   background: transparent;
   border: none;
@@ -21,8 +20,12 @@ export const ButtonBase = styled.button`
   }
 `;
 
-export const MinusButton = styled(ButtonBase)``;
-export const PlusButton = styled(ButtonBase)``;
+export const MinusButton = styled(ButtonBase)`
+  padding: 0.5625rem 0.25rem 0.5625rem 0.5rem;
+`;
+export const PlusButton = styled(ButtonBase)`
+  padding: 0.5625rem 0.5rem 0.5625rem 0.25rem;
+`;
 export const NumberOfCoffe = styled.input`
   display: flex;
   text-align: center;

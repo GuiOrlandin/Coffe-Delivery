@@ -1,10 +1,10 @@
-import { SloganContent, SloganText } from "./styles";
+import { SloganContainer, SloganText } from "./styles";
 import sloganImage from "../../../../../assets/slogan-image.svg";
 import { ShoppingCart, Package, Timer, Coffee } from "phosphor-react";
 
 export function Slogan() {
   return (
-    <SloganContent>
+    <SloganContainer>
       <SloganText>
         <h1>Encontre o café perfeito para qualquer hora do dia</h1>
         <p>
@@ -27,6 +27,6 @@ export function Slogan() {
         </div>
       </SloganText>
       <img src={sloganImage} alt="" />
-    </SloganContent>
+    </SloganContainer>
   );
 }

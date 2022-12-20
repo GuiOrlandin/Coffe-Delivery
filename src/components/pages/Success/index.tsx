@@ -1,5 +1,6 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 import DeliveryIlustration from "../../../assets/ilustration-delivery.svg";
+
 import {
   AdressContainer,
   AdressInformation,
@@ -23,7 +24,7 @@ export function Success() {
             <AdressContainer>
               <MapPin size={32} weight="fill" />
               <div>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em <strong>RUA TAL, 102</strong>
                 <p>Farrapos - Porto Alegre, RS</p>
               </div>
             </AdressContainer>
@@ -38,10 +39,10 @@ export function Success() {
             </ForecastDelivery>
             <PaymentInfoContainer>
               <CurrencyDollar size={32} weight="fill" />
-              <p>
+              <div>
                 Pagamento na entrega
                 <StrongParagraph>Cartão de Crédito</StrongParagraph>
-              </p>
+              </div>
             </PaymentInfoContainer>
           </AdressInformation>
         </LinearGradientBorder>

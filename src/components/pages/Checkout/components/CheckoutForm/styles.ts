@@ -72,7 +72,7 @@ export const FormsOfPayment = styled.div`
   padding: 2.5rem;
 
   p {
-    margin-left: 1.86rem;
+    margin-left: 1.5rem;
     font-size: 0.875rem;
     font-family: "Roboto", sans-serif;
   }
@@ -127,7 +127,7 @@ export const AddressStreet = styled.input`
   display: grid;
 `;
 
-export const NumberAndComplement = styled.form`
+export const NumberAndComplement = styled.div`
   display: grid;
   grid-template-columns: 0.3fr 1fr;
   gap: 0.75rem;

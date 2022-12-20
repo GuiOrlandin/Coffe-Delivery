@@ -4,10 +4,13 @@ export const CheckoutContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 3.0625rem 10rem 15rem 10rem;
-  /* gap: 2.125rem; */
+
+  div {
+  }
 
   a {
     text-decoration: none;
+    color: ${(props) => props.theme.colors["--white"]};
   }
 
   h1 {
@@ -26,6 +29,14 @@ export const CheckoutContainer = styled.div`
   }
 `;
 
+export const AdressDelivery = styled.div`
+  display: flex;
+`;
+
+export const PaymentInfo = styled.div`
+  display: flex;
+`;
+
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,7 +47,7 @@ export const SelectedCoffeContainer = styled.div`
   flex-direction: column;
   width: 100%;
   background: ${(props) => props.theme.colors["--card"]};
-  border-radius: 8px;
+  border-radius: 6px 44px;
 `;
 
 export const ConfirmOrderContainer = styled.div`
@@ -74,12 +85,13 @@ export const TotalPrice = styled(BaseOptionsButton)`
   color: ${(props) => props.theme.colors["--subtitle"]};
 `;
 
-export const ConfirmOrderButton = styled.div`
+export const ConfirmOrderButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 1.5rem;
   padding: 0.75rem 7.4rem;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
 

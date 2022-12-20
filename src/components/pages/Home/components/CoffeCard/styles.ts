@@ -85,7 +85,14 @@ export const CardButtons = styled.div`
   button {
     display: flex;
     border: none;
+    padding: 0.5rem;
     border-radius: 8px;
+  }
+`;
+
+export const AddOrSubtractButtonDiv = styled.div`
+  button {
+    padding: 0.75rem 0.25rem 0.75rem 0.5rem;
   }
 `;
 
@@ -93,7 +100,6 @@ export const CartButton = styled.button`
   margin-left: 0.5rem;
   background: ${(props) => props.theme.colors["--purple-dark"]};
   color: ${(props) => props.theme.colors["--white"]};
-  padding: 0.5rem;
 
   :hover {
     cursor: pointer;

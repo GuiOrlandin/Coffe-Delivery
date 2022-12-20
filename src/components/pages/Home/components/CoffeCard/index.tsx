@@ -1,4 +1,5 @@
 import {
+  AddOrSubtractButtonDiv,
   CardButtons,
   CartButton,
   CoffeCardContainer,
@@ -34,7 +35,7 @@ interface coffeeProps {
 // type CoffeCardData = zod.infer<typeof CoffeCardValidationSchema>;
 
 export function CoffeCard({ coffee }: coffeeProps) {
-  const { AddNewCoffee, cartItems } = useCart();
+  const { AddNewCoffee } = useCart();
   const [quantity, setQuantity] = useState(0);
   const fomattedPrice = FormatMoney(coffee.price);
 
@@ -73,13 +74,13 @@ export function CoffeCard({ coffee }: coffeeProps) {
         <Price>
           <span>R$</span> <strong>{fomattedPrice}</strong>
         </Price>
-        <div>
+        <AddOrSubtractButtonDiv>
           <AddOrSubtractButton
             Increase={handleIncrease}
             Decrease={handleDecrease}
             quantity={quantity}
           />
-        </div>
+        </AddOrSubtractButtonDiv>
         <CartButton type="button" onClick={HandleAddCoffeTocart}>
           <ShoppingCartSimple size={20} weight="fill" />
         </CartButton>

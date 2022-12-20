@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import sloganBackground from "../../../../../assets/slogan-background.svg";
 
-export const SloganContent = styled.div`
+export const SloganContainer = styled.div`
   padding: 5.75rem 10rem;
-  width: 100%;
   display: flex;
   justify-content: space-between;
-  background: ${() => `url(${sloganBackground}) no-repeat`};
+  background: ${() => `url(${sloganBackground}) `};
+  background-size: cover;
 
   img {
     margin-left: 3.5rem;

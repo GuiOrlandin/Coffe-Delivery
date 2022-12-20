@@ -1,4 +1,4 @@
-import { useCart } from "../../../hooks/useCarts";
+// import { useForm } from "react-hook-form";
 import { FormatMoney } from "../../../utils/formatMoney";
 import { CheckoutForm } from "./components/CheckoutForm";
 import { CoffeSelected } from "./components/SelectedCoffee";
@@ -10,13 +10,13 @@ import {
   SelectedCoffeContainer,
   TotalItens,
   TotalPrice,
-  formContainer,
   FormContainer,
 } from "./styles";
+import { useCart } from "../../../hooks/useCarts";
 
 export function Checkout() {
   const { cartItems } = useCart();
-
+  // const { setValue } = useForm();
   function getTotalPrice() {
     let totalPriceOfCoffe = 0;
     cartItems.forEach((element) => {
@@ -57,9 +57,21 @@ export function Checkout() {
               <strong>Total</strong>
               <strong>{`R$ ${totalPriceConverted}`}</strong>
             </TotalPrice>
-            <a href="/Success">
-              <ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
-            </a>
+
+            <ConfirmOrderButton
+              type="submit"
+              // onClick={() => {
+              //   setValue("adress", "");
+              //   setValue("city", "");
+              //   setValue("uf", "");
+              //   setValue("district", "");
+              //   setValue("complement", "");
+              //   setValue("cep");
+              //   setValue("number");
+              // }}
+            >
+              <a>CONFIRMAR PEDIDO</a>
+            </ConfirmOrderButton>
           </ConfirmOrderContainer>
         </SelectedCoffeContainer>
       </div>

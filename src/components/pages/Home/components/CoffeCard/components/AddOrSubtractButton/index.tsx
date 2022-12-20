@@ -19,11 +19,11 @@ export function AddOrSubtractButton({
 }: addOrSubtractButtonProps) {
   return (
     <ButtonContainer>
-      <MinusButton onClick={Decrease}>
+      <MinusButton type="button" onClick={Decrease}>
         <Minus weight="bold" />
       </MinusButton>
       <NumberOfCoffe readOnly type="text" value={quantity} />
-      <PlusButton onClick={Increase}>
+      <PlusButton type="button" onClick={Increase}>
         <Plus weight="bold" />
       </PlusButton>
     </ButtonContainer>
