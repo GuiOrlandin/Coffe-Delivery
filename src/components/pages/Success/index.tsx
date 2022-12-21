@@ -30,8 +30,9 @@ export function Success() {
             <AdressContainer>
               <MapPin size={32} weight="fill" />
               <div>
-                Entrega em <strong>RUA TAL, 102</strong>
-                <p>Farrapos - Porto Alegre, RS</p>
+                Entrega em{" "}
+                <strong>{`${formValues?.adress}, ${formValues?.number}`}</strong>
+                <p>{`${formValues?.city} - ${formValues?.uf}`}</p>
               </div>
             </AdressContainer>
             <ForecastDelivery>

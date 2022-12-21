@@ -1,5 +1,5 @@
 import produce from "immer";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { coffee } from "../components/pages/Home/components/CoffeCard";
 
 export interface CartItem extends coffee {
@@ -11,16 +11,25 @@ interface CartContentType {
   AddNewCoffee: (coffe: CartItem) => void;
   updateCoffeeQuantity: (coffe: CartItem) => void;
   RemoveCoffee: (coffe: CartItem) => void;
+  cleanStoragedCart: () => void;
 }
 
 interface CartContextProviderProps {
   children: ReactNode;
 }
 
+const COFFEE_ITEMS_STORAGE_KEY = "@coffe-delivery:cart-items-1.0.0";
+
 export const CartContext = createContext({} as CartContentType);
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartItems, SetCartItems] = useState<CartItem[]>([]);
+  const [cartItems, SetCartItems] = useState<CartItem[]>(() => {
+    const storedCartItems = localStorage.getItem(COFFEE_ITEMS_STORAGE_KEY);
+    if (storedCartItems) {
+      return JSON.parse(storedCartItems);
+    }
+    return [];
+  });
 
   function AddNewCoffee(coffee: CartItem) {
     const CoffeAlreadyInCart = cartItems.findIndex(
@@ -54,6 +63,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     SetCartItems(newCart);
   }
 
+  function cleanStoragedCart() {
+    SetCartItems([]);
+  }
+
   function RemoveCoffee(coffee: CartItem) {
     const CoffeWithoutDeleteOne = cartItems.filter((cartItem) => {
       return cartItem !== coffee;
@@ -61,9 +74,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     SetCartItems(CoffeWithoutDeleteOne);
   }
 
+  useEffect(() => {
+    const cartItemsJSON = JSON.stringify(cartItems);
+    localStorage.setItem(COFFEE_ITEMS_STORAGE_KEY, cartItemsJSON);
+  }, [cartItems]);
+
   return (
     <CartContext.Provider
-      value={{ cartItems, AddNewCoffee, updateCoffeeQuantity, RemoveCoffee }}
+      value={{
+        cartItems,
+        AddNewCoffee,
+        updateCoffeeQuantity,
+        RemoveCoffee,
+        cleanStoragedCart,
+      }}
     >
       {children}
     </CartContext.Provider>

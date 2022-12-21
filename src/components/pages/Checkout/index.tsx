@@ -23,18 +23,18 @@ const formValuesValidationSchema = zod.object({
   city: zod.string().min(1, "Informe a sua Cidade"),
   uf: zod.string().min(1, "Informe o seu Estado"),
   district: zod.string().min(1, "Informe o seu Bairro"),
-  complement: zod.string().min(1, "Informe o seu Complemento"),
-  cep: zod.number().min(8, "Informe o seu CEP").max(8),
-  number: zod.number().min(1, "Informe o seu Numero").max(6),
+  complement: zod.string(),
+  cep: zod.number().min(0),
+  number: zod.number().min(0),
 });
 
 type formValuesData = zod.infer<typeof formValuesValidationSchema>;
 
 export function Checkout() {
-  const { cartItems } = useCart();
+  const { cartItems, cleanStoragedCart } = useCart();
   const { createFormValues } = useContext(FormContext);
 
-  const formValues = useForm<formValuesData>({
+  const formValues = useForm({
     resolver: zodResolver(formValuesValidationSchema),
     defaultValues: {
       adress: "",
@@ -50,8 +50,8 @@ export function Checkout() {
   const { handleSubmit } = formValues;
 
   function handleCreateFormValues(data: formValuesData) {
-    console.log(data);
     createFormValues(data);
+    console.log(data);
   }
 
   function getTotalPrice() {
@@ -72,51 +72,42 @@ export function Checkout() {
       onSubmit={handleSubmit(handleCreateFormValues)}
       action=""
     >
-      <FormContainer>
-        <h1>Complete seu pedido</h1>
-        <FormProvider {...formValues}>
+      <FormProvider {...formValues}>
+        <FormContainer>
+          <h1>Complete seu pedido</h1>
           <CheckoutForm />
-        </FormProvider>
-      </FormContainer>
-      <div>
-        <h1>Cafés selecionados</h1>
-        <SelectedCoffeContainer>
-          <div>
-            {cartItems.map((cartItem) => (
-              <CoffeSelected key={cartItem.id} coffee={cartItem} />
-            ))}
-          </div>
-          <ConfirmOrderContainer>
-            <TotalItens>
-              <p>Total de itens</p>
-              <span>R$ {totalItemsPriceConverted}</span>
-            </TotalItens>
-            <DeliveryPrice>
-              <p>Entrega</p>
-              <span>R$ 3,50</span>
-            </DeliveryPrice>
-            <TotalPrice>
-              <strong>Total</strong>
-              <strong>{`R$ ${totalPriceConverted}`}</strong>
-            </TotalPrice>
+        </FormContainer>
+        <div>
+          <h1>Cafés selecionados</h1>
+          <SelectedCoffeContainer>
+            <div>
+              {cartItems.map((cartItem) => (
+                <CoffeSelected key={cartItem.id} coffee={cartItem} />
+              ))}
+            </div>
+            <ConfirmOrderContainer>
+              <TotalItens>
+                <p>Total de itens</p>
+                <span>R$ {totalItemsPriceConverted}</span>
+              </TotalItens>
+              <DeliveryPrice>
+                <p>Entrega</p>
+                <span>R$ 3,50</span>
+              </DeliveryPrice>
+              <TotalPrice>
+                <strong>Total</strong>
+                <strong>{`R$ ${totalPriceConverted}`}</strong>
+              </TotalPrice>
 
-            <ConfirmOrderButton
-              type="submit"
-              // onClick={() => {
-              //   setValue("adress", "");
-              //   setValue("city", "");
-              //   setValue("uf", "");
-              //   setValue("district", "");
-              //   setValue("complement", "");
-              //   setValue("cep");
-              //   setValue("number");
-              // }}
-            >
-              <a href="/Success">CONFIRMAR PEDIDO</a>
-            </ConfirmOrderButton>
-          </ConfirmOrderContainer>
-        </SelectedCoffeContainer>
-      </div>
+              <ConfirmOrderButton onClick={cleanStoragedCart} type="submit">
+                <a type="submit" href="/Success">
+                  CONFIRMAR PEDIDO
+                </a>
+              </ConfirmOrderButton>
+            </ConfirmOrderContainer>
+          </SelectedCoffeContainer>
+        </div>
+      </FormProvider>
     </CheckoutContainer>
   );
 }

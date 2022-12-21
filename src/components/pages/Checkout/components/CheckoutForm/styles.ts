@@ -107,14 +107,15 @@ export const BaseButton = styled.button`
   line-height: 1.6;
 `;
 
+export const CreditCardButton = styled(BaseButton)`
+  padding: 1rem 1.229375rem 1rem 1rem;
+
+  :enabled {
+  }
+`;
 export const MoneyButton = styled(BaseButton)`
   padding: 1rem 4.579375rem 1rem 1rem;
 `;
-
-export const CreditCardButton = styled(BaseButton)`
-  padding: 1rem 1.229375rem 1rem 1rem;
-`;
-
 export const DebitCardButton = styled(BaseButton)`
   padding: 1rem 1.729375rem 1rem 1rem;
 `;

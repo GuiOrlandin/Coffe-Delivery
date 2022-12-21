@@ -43,7 +43,14 @@ export function CheckoutForm() {
         </AdressDelivery>
         <p>Informe o endereço onde deseja receber seu pedido</p>
         <OrderFormContent>
-          <CEP id="cep" type="number" placeholder="CEP" {...register("cep")} />
+          <CEP
+            id="cep"
+            type="number"
+            min={1}
+            placeholder="CEP"
+            {...register("cep", { valueAsNumber: true })}
+          />
+
           <AddressStreet
             id="adress"
             type="text"
@@ -54,8 +61,8 @@ export function CheckoutForm() {
             <AddressNumber
               id="number"
               type="number"
-              placeholder="numero"
-              {...register("number")}
+              placeholder="Numero"
+              {...register("number", { valueAsNumber: true })}
             />
             <AddressComplement
               id="complement"
