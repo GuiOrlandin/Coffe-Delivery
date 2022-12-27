@@ -44,6 +44,7 @@ export const OrderFormContainer = styled.div`
     font-weight: 400;
     font-family: "Roboto", sans-serif;
     margin-left: 1.95rem;
+    color: ${(props) => props.theme.colors["--text"]};
   }
   input {
     display: flex;
@@ -75,7 +76,9 @@ export const FormsOfPayment = styled.div`
   p {
     margin-left: 1.5rem;
     font-size: 0.875rem;
+    font-weight: 400;
     font-family: "Roboto", sans-serif;
+    color: ${(props) => props.theme.colors["--text"]};
   }
 `;
 
@@ -108,6 +111,7 @@ export const AddressNumber = styled.input`
 export const ComplementContainer = styled.div`
   display: flex;
   flex: 1;
+  position: relative;
   flex-direction: row;
   align-items: center;
   background: none;
@@ -115,9 +119,10 @@ export const ComplementContainer = styled.div`
   border-radius: 8px;
 
   p {
-    z-index: +1;
+    position: absolute;
     font-size: 0.75rem;
     font-style: italic;
+    right: 1rem;
   }
 
   font-size: 0.75rem;

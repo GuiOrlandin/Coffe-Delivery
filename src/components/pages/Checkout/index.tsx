@@ -26,7 +26,8 @@ const formValuesValidationSchema = zod.object({
   district: zod.string().min(1, "Informe o seu Bairro"),
   complement: zod.string(),
   cep: zod.string().min(1, "Informe o CEP"),
-  number: zod.number().min(1),
+  number: zod.number().min(1).nullable(),
+  paymentMethod: zod.string().min(1),
 });
 
 type formValuesData = zod.infer<typeof formValuesValidationSchema>;
@@ -44,7 +45,8 @@ export function Checkout() {
       district: "",
       complement: "",
       cep: "",
-      number: "",
+      number: null,
+      paymentMethod: "",
     },
   });
 

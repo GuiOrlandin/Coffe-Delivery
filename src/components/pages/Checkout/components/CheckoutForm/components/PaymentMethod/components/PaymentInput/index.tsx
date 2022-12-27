@@ -1,4 +1,6 @@
 import { InputHTMLAttributes, ReactNode } from "react";
+import { useFormContext } from "react-hook-form";
+
 import { ContentContainer, PaymentMethodContainer } from "./styles";
 
 type paymentMethodInputProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -12,9 +14,17 @@ export function PaymentsInput({
   label,
   ...props
 }: paymentMethodInputProps) {
+  const { register } = useFormContext();
+
   return (
     <PaymentMethodContainer>
-      <input id={id} type="radio" {...props} name="paymentMethod" />
+      <input
+        id={id}
+        type="radio"
+        // onChange={handleChange}
+        {...props}
+        {...register("paymentMethod")}
+      />
       <label htmlFor={id}>
         <ContentContainer>
           {icon}

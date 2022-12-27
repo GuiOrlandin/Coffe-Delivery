@@ -11,12 +11,14 @@ interface formData {
   district: string;
   complement: string;
   cep: string;
-  number: number;
+  number: number | null;
+  paymentMethod: string;
 }
 
 interface FormContentType {
   createFormValues: (data: formData) => void;
   formValues: formData | undefined;
+  updatePaymentMethod: (payment: string) => void;
 }
 
 const FORM_VALUES_STORAGE_KEY = "@coffe-delivery:forma-values-1.0.0";
@@ -50,12 +52,23 @@ export function FormContextProvider({ children }: FormContextProviderProps) {
       district: data.district,
       cep: data.cep,
       number: data.number,
+      paymentMethod: data.paymentMethod,
     };
     setFormValues(values);
     console.log({ formValues });
   }
+
+  function updatePaymentMethod(payment: string) {
+    createFormValues({
+      ...formValues,
+      paymentMethod: payment,
+    });
+  }
+
   return (
-    <FormContext.Provider value={{ createFormValues, formValues }}>
+    <FormContext.Provider
+      value={{ createFormValues, formValues, updatePaymentMethod }}
+    >
       {children}
     </FormContext.Provider>
   );

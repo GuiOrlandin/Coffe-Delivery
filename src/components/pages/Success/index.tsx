@@ -17,6 +17,21 @@ import {
 
 export function Success() {
   const { formValues } = useContext(FormContext);
+
+  function formatValue(value: string) {
+    if (value === "debit") {
+      return "Cartão de Débito";
+    }
+    if (value === "credit") {
+      return "Cartão de Crédito";
+    }
+    return "Dinheiro";
+  }
+
+  const fomattedPaymentValue = formValues
+    ? formatValue(formValues.paymentMethod)
+    : "";
+
   useEffect(() => {
     console.log(formValues);
   }, [formValues]);
@@ -48,7 +63,7 @@ export function Success() {
               <CurrencyDollar size={32} weight="fill" />
               <div>
                 Pagamento na entrega
-                <StrongParagraph>Cartão de Crédito</StrongParagraph>
+                <StrongParagraph>{fomattedPaymentValue}</StrongParagraph>
               </div>
             </PaymentInfoContainer>
           </AdressInformation>

@@ -1,4 +1,5 @@
 import { CurrencyDollar, MapPinLine } from "phosphor-react";
+import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { AdressDelivery, PaymentInfo } from "../../styles";
 import { PaymentMethod } from "./components/PaymentMethod";
@@ -24,6 +25,8 @@ import {
 
 export function CheckoutForm() {
   const { register } = useFormContext();
+  const [optionalPlaceHolderVisible, setOptionalPlaceHolderVisible] =
+    useState("");
 
   return (
     <CheckoutFormContainer>
@@ -56,9 +59,12 @@ export function CheckoutForm() {
                 id="complement"
                 type="text"
                 placeholder="Complemento"
-                {...register("complement")}
+                {...register("complement", {
+                  onChange: (e) =>
+                    setOptionalPlaceHolderVisible(e.target.value),
+                })}
               />
-              <p>Opcional</p>
+              {optionalPlaceHolderVisible === "" && <p>Opcional</p>}
             </ComplementContainer>
           </NumberAndComplement>
           <CityLocation>
