@@ -16,9 +16,11 @@ p {
   text-align: center;
   justify-content: center;
   border-radius: 8px;
-  color: ${(props) => props.theme.colors["--subtitle"]};
+  color: ${(props: { theme: { colors: { [x: string]: any } } }) =>
+    props.theme.colors["--subtitle"]};
 
-  background: ${(props) => props.theme.colors["--card"]};
+  background: ${(props: { theme: { colors: { [x: string]: any } } }) =>
+    props.theme.colors["--card"]};
 
 `;
 
