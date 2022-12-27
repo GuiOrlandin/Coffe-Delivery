@@ -5,12 +5,12 @@ interface FormContextProviderProps {
 }
 
 interface formData {
-  adress: string;
+  address: string;
   city: string;
   uf: string;
   district: string;
   complement: string;
-  cep: number;
+  cep: string;
   number: number;
 }
 
@@ -30,6 +30,8 @@ export function FormContextProvider({ children }: FormContextProviderProps) {
     if (storedFormValues) {
       return JSON.parse(storedFormValues);
     }
+
+    return {};
   });
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export function FormContextProvider({ children }: FormContextProviderProps) {
   function createFormValues(data: formData) {
     console.log("entrou");
     const values: formData = {
-      adress: data.adress,
+      address: data.address,
       city: data.city,
       uf: data.uf,
       complement: data.complement,

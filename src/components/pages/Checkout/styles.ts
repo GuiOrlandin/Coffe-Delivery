@@ -2,11 +2,9 @@ import styled from "styled-components";
 
 export const CheckoutContainer = styled.form`
   display: flex;
+  width: 100%;
   justify-content: space-between;
   padding: 3.0625rem 10rem 15rem 10rem;
-
-  div {
-  }
 
   a {
     text-decoration: none;

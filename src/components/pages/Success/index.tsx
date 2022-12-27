@@ -31,7 +31,7 @@ export function Success() {
               <MapPin size={32} weight="fill" />
               <div>
                 Entrega em{" "}
-                <strong>{`${formValues?.adress}, ${formValues?.number}`}</strong>
+                <strong>{`${formValues?.address}, ${formValues?.number}`}</strong>
                 <p>{`${formValues?.city} - ${formValues?.uf}`}</p>
               </div>
             </AdressContainer>

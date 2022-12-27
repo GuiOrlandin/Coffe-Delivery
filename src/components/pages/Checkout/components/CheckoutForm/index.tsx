@@ -1,12 +1,7 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from "phosphor-react";
+import { CurrencyDollar, MapPinLine } from "phosphor-react";
 import { useFormContext } from "react-hook-form";
 import { AdressDelivery, PaymentInfo } from "../../styles";
+import { PaymentMethod } from "./components/PaymentMethod";
 
 import {
   AddressStreet,
@@ -23,15 +18,13 @@ import {
   UF,
   FormsOfPayment,
   OrderFormIcon,
-  PaymentButtons,
   CheckoutFormContainer,
-  MoneyButton,
-  CreditCardButton,
-  DebitCardButton,
+  ComplementContainer,
 } from "./styles";
 
 export function CheckoutForm() {
   const { register } = useFormContext();
+
   return (
     <CheckoutFormContainer>
       <OrderFormContainer>
@@ -43,33 +36,30 @@ export function CheckoutForm() {
         </AdressDelivery>
         <p>Informe o endereço onde deseja receber seu pedido</p>
         <OrderFormContent>
-          <CEP
-            id="cep"
-            type="number"
-            min={1}
-            placeholder="CEP"
-            {...register("cep", { valueAsNumber: true })}
-          />
+          <CEP id="cep" type="string" placeholder="CEP" {...register("cep")} />
 
           <AddressStreet
-            id="adress"
+            id="address"
             type="text"
             placeholder="Rua"
-            {...register("adress")}
+            {...register("address")}
           />
           <NumberAndComplement>
             <AddressNumber
               id="number"
-              type="number"
+              type="string"
               placeholder="Numero"
               {...register("number", { valueAsNumber: true })}
             />
-            <AddressComplement
-              id="complement"
-              type="text"
-              placeholder="Complemento"
-              {...register("complement")}
-            />
+            <ComplementContainer>
+              <AddressComplement
+                id="complement"
+                type="text"
+                placeholder="Complemento"
+                {...register("complement")}
+              />
+              <p>Opcional</p>
+            </ComplementContainer>
           </NumberAndComplement>
           <CityLocation>
             <District
@@ -96,21 +86,7 @@ export function CheckoutForm() {
           <h2>Pagamento</h2>
         </PaymentInfo>
         <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
-
-        <PaymentButtons>
-          <CreditCardButton type="button">
-            <CreditCard size={16} />
-            CARTÃO DE CRÉDITO
-          </CreditCardButton>
-          <DebitCardButton type="button">
-            <Bank size={16} />
-            CARTÃO DE DÉBITO
-          </DebitCardButton>
-          <MoneyButton type="button">
-            <Money size={16} />
-            DINHEIRO
-          </MoneyButton>
-        </PaymentButtons>
+        <PaymentMethod />
       </FormsOfPayment>
     </CheckoutFormContainer>
   );

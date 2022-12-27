@@ -17,15 +17,16 @@ import * as zod from "zod";
 import { useCart } from "../../../hooks/useCarts";
 import { useContext } from "react";
 import { FormContext } from "../../../context/FormContext";
+import { useNavigate } from "react-router-dom";
 
 const formValuesValidationSchema = zod.object({
-  adress: zod.string().min(1, "Informe a sua Rua"),
+  address: zod.string().min(1, "Informe a sua Rua"),
   city: zod.string().min(1, "Informe a sua Cidade"),
   uf: zod.string().min(1, "Informe o seu Estado"),
   district: zod.string().min(1, "Informe o seu Bairro"),
   complement: zod.string(),
-  cep: zod.number().min(0),
-  number: zod.number().min(0),
+  cep: zod.string().min(1, "Informe o CEP"),
+  number: zod.number().min(1),
 });
 
 type formValuesData = zod.infer<typeof formValuesValidationSchema>;
@@ -37,21 +38,24 @@ export function Checkout() {
   const formValues = useForm({
     resolver: zodResolver(formValuesValidationSchema),
     defaultValues: {
-      adress: "",
+      address: "",
       city: "",
       uf: "",
       district: "",
       complement: "",
-      cep: 0,
-      number: 0,
+      cep: "",
+      number: "",
     },
   });
 
+  const navigate = useNavigate();
   const { handleSubmit } = formValues;
 
   function handleCreateFormValues(data: formValuesData) {
     createFormValues(data);
     console.log(data);
+    navigate("/Success");
+    cleanStoragedCart();
   }
 
   function getTotalPrice() {
@@ -99,10 +103,8 @@ export function Checkout() {
                 <strong>{`R$ ${totalPriceConverted}`}</strong>
               </TotalPrice>
 
-              <ConfirmOrderButton onClick={cleanStoragedCart} type="submit">
-                <a type="submit" href="/Success">
-                  CONFIRMAR PEDIDO
-                </a>
+              <ConfirmOrderButton type="submit">
+                CONFIRMAR PEDIDO
               </ConfirmOrderButton>
             </ConfirmOrderContainer>
           </SelectedCoffeContainer>

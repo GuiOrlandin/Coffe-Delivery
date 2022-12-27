@@ -2,6 +2,7 @@ import styled from "styled-components";
 export const CheckoutFormContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   input {
     outline-color: ${(props) => props.theme.colors["--yellow-dark"]};
@@ -32,7 +33,7 @@ export const OrderFormIcon = styled.h2`
 `;
 
 export const OrderFormContainer = styled.div`
-  display: grif;
+  display: grid;
   flex-direction: column;
   background: ${(props) => props.theme.colors["--card"]};
   padding: 2.5rem;
@@ -78,45 +79,13 @@ export const FormsOfPayment = styled.div`
   }
 `;
 
-export const PaymentButtons = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  align-items: center;
-
-  button {
-    display: flex;
-    align-items: center;
-    text-align: start;
-    font-size: 0.75rem;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    background: ${(props) => props.theme.colors["--button"]};
-    border: none;
-    border-radius: 8px;
-    margin-top: 2rem;
-  }
-
-  svg {
-    color: ${(props) => props.theme.colors["--purple"]};
-    margin-right: 0.75rem;
-  }
-`;
-
-export const BaseButton = styled.button`
-  line-height: 1.6;
-`;
-
-export const CreditCardButton = styled(BaseButton)`
+export const CreditCardButton = styled.div`
   padding: 1rem 1.229375rem 1rem 1rem;
-
-  :enabled {
-  }
 `;
-export const MoneyButton = styled(BaseButton)`
+export const MoneyButton = styled.div`
   padding: 1rem 4.579375rem 1rem 1rem;
 `;
-export const DebitCardButton = styled(BaseButton)`
+export const DebitCardButton = styled.div`
   padding: 1rem 1.729375rem 1rem 1rem;
 `;
 
@@ -129,19 +98,41 @@ export const AddressStreet = styled.input`
 `;
 
 export const NumberAndComplement = styled.div`
-  display: grid;
-  grid-template-columns: 0.3fr 1fr;
+  display: flex;
   gap: 0.75rem;
 `;
 export const AddressNumber = styled.input`
   width: 12.5rem;
 `;
 
-export const AddressComplement = styled.input``;
+export const ComplementContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 8px;
+
+  p {
+    z-index: +1;
+    font-size: 0.75rem;
+    font-style: italic;
+  }
+
+  font-size: 0.75rem;
+  font-family: "Roboto", sans-serif;
+  color: ${(props) => props.theme.colors["--label"]};
+`;
+
+export const AddressComplement = styled.input`
+  flex: 1;
+  height: 100%;
+`;
 
 export const CityLocation = styled.div`
   display: grid;
-  grid-template-columns: 0.1fr 1fr 0.1fr;
+  grid-template-columns: 0.6fr 1fr 0.1fr;
   gap: 0.75rem;
 `;
 
