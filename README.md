@@ -24,9 +24,6 @@ Coffe Delivery, é um projeto de uma cafeteria fictícia, em que é possivel ger
 <img src="src/assets/demo2.png">
 <img src="src/assets/demo3.png">
 
-## ⚙ Features
-
-
 ## 💻 Getting started
 
 ```sh
